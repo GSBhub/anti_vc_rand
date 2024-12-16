@@ -34,16 +34,18 @@ win_c = 2531011
 if __name__ == '__main__':    
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-s", "--seed", type=int, default=random.randint(0, 2**32), help="RNG seed.")
+    parser.add_argument("-s", "--seed", type=int, default=randint(0, 2**32), help="RNG seed.")
 
     parser.add_argument("-n", "--number", type=int, default=1, help="Number of random values to generate.")
 
     args = parser.parse_args()
 
-    seed(args.seed)
+    seed(args.seed & 0xFFFFFFFF)
 
-    print(f"Generating random values...")
-
-    for i in range(0, n):
+    print(f"Generating random values with seed {args.seed & 0xFFFFFFFF}...")
+    rand_str = ""
+    for i in range(0, args.number):
         rand_val = rand()
-        print(f"Val {i}: {rand_val}")
+        rand_str = rand_str + f"{rand_val} "
+    print(f"Generated {args.number} item(s):")
+    print(rand_str)

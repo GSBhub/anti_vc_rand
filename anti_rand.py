@@ -8,4 +8,8 @@ if __name__ == '__main__':
     parser.add_argument("-n", "--n_guesses", type=int, help="Approximate number of random values back to guess for the seed")
     args = parser.parse_args()
 
-    anti_win_rand(args.random_values, args.n_guesses)
+    print(args.random_values)
+    print(args.n_guesses)
+    seeds = anti_win_rand(args.random_values, args.n_guesses)
+    print (f"Got {len(seeds)} candidates for seeds for the provided list of random values.")
+    print(seeds)
