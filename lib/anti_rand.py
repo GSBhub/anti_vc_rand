@@ -31,8 +31,12 @@ def anti_win_rand(guesses, num_rand, m=win_m, a=win_a, c=win_c):
     
     generators = []
     # generate generators for all anti-lcg values possible
-    for i in range(0, 0x1ffff):
+    for i in range(0, 0x10000):
         generators.append(anti_lcg(m, a, c, starting_value + i))
+
+    # also add the MSB carved off by the and of 0x7FFF
+    for j in range(0, 0x10000):
+        generators.append(anti_lcg(m, a, c, (starting_value + j) | 0x80000000))
     
     while attempts > 1:
         

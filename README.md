@@ -27,4 +27,4 @@ The algorithm works like this:
     Once you have iterated through all potential guesses, your next iteration for the remaining should be the "seed" value.
 
 ## Current bugs
-The test cases sometimes randomly fails, which indicates a flaw in my algorithm. I kind of just threw this together in a weekend, so my thought is that the `range (0, 0x1ffff)` loop doesn't fully undo the `val >> 16 & 0x7FFF` that windows does in standard calculations.
+Test cases may fail (generally due to the exact number of seed candidates not being super consistent -> though this will also return a seed that will likely be funcitonally identical to your sequence (for at least a while), which is another potentially interesting feature.
