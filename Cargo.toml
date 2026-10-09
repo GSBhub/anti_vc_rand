@@ -1,0 +1,37 @@
+[package]
+name = "anti_lcg"
+version = "0.1.0"
+edition = "2024"
+description = "Recover seeds (and unknown constants) of linear congruential generators such as MSVC rand()"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "anti-lcg"
+required-features = ["cli"]
+
+[[bench]]
+name = "recover"
+harness = false
+
+[features]
+default = ["cli"]
+cli = ["dep:clap"]
+python = ["dep:pyo3"]
+
+[dependencies]
+clap = { version = "4.6.7", features = ["derive"], optional = true }
+num-bigint = "0.5.1"
+num-integer = "0.1.47"
+num-traits = "0.2.19"
+pyo3 = { version = "0.29.3", features = ["abi3-py38"], optional = true }
+rayon = "1.12.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[dev-dependencies]
+criterion = "0.8.2"
