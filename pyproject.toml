@@ -1,0 +1,17 @@
+[project]
+name = "anti-lcg"
+version = "0.1.0"
+description = "Recover seeds and constants of linear congruential generators (Rust core)"
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[tool.maturin]
+features = ["python", "pyo3/extension-module"]
+module-name = "anti_lcg"
+profile = "release"
+
+[dependency-groups]
+dev = ["pytest>=8"]
